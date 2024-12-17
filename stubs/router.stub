@@ -1,0 +1,7 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\{{ name }}Controller;
+
+// api {{ name }}
+Route::apiResource('/{{ name }}', {{ name }}Controller::class);

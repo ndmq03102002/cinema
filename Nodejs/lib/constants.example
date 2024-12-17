@@ -1,0 +1,6 @@
+module.exports = Object.freeze({
+    SOCKET_IP_HOST: 'php:80',
+    SOCKET_IP_PORT: '3001',
+    REDIS_IP_HOST: 'redis',
+    REDIS_IP_PORT: '6379',
+});

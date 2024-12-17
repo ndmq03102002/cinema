@@ -1,0 +1,268 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ rootNamespace }}Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+class {{ class }} extends Controller
+{
+    public function __construct(
+    )
+    {
+    }
+
+    /**
+     * @author Nampx
+     * @OA\Get (
+     *     path="/api/{{ class }}/index",
+     *     tags={"{{ class }}"},
+     *     summary="{{ class }} index",
+     *     security={{"bearerAuth":{}}},
+     *     operationId="{{ class }}/index",
+     *     @OA\Parameter(
+     *          in="header",
+     *          name="X-localication",
+     *          required=false,
+     *          description="Ngôn ngữ",
+     *          @OA\Schema(
+     *            type="string",
+     *            example="vi",
+     *          )
+     *     ),
+     *     @OA\Parameter(
+     *          in="query",
+     *          name="page",
+     *          required=false,
+     *          description="Phân trang",
+     *          @OA\Schema(
+     *            type="integer",
+     *            example=1,
+     *          ),
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Success",
+     *             @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="Success."),
+     *          )
+     *     ),
+     * )
+     */
+    public function index()
+    {
+        try {
+            DB::beginTransaction();
+            DB::commit();
+
+            return response()->json([
+                'status' => Constant::SUCCESS_CODE,
+                'message' => trans('messages.success.success'),
+                'data' => []
+            ], Constant::SUCCESS_CODE);
+
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+
+            DB::rollBack();
+
+            return response()->json([
+                'statusCode' => Response::HTTP_BAD_REQUEST,
+                'errorCode' => '',
+                'message' => '',
+            ], Response::HTTP_BAD_REQUEST);
+
+        }
+    }
+
+    /**
+     * @author Nampx
+     * @OA\Post (
+     *     path="/api/{{ class }}/store",
+     *     tags={"{{ class }}"},
+     *     summary="{{ class }} store",
+     *     security={{"bearerAuth":{}}},
+     *     operationId="{{ class }}/store",
+     *     @OA\Parameter(
+     *          in="header",
+     *          name="X-localication",
+     *          required=false,
+     *          description="Ngôn ngữ",
+     *          @OA\Schema(
+     *            type="string",
+     *            example="vi",
+     *          )
+     *     ),
+     *     @OA\RequestBody(
+     *          @OA\JsonContent(
+     *              type="object",
+     *          @OA\Examples(
+     *              summary="Examples",
+     *              example = "Examples",
+     *              value = {
+     *                  },
+     *              ),
+     *          )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Success",
+     *             @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="Success."),
+     *          )
+     *     ),
+     * )
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * @author Nampx
+     * @OA\Get (
+     *     path="/api/{{ class }}/show/{id}",
+     *     tags={"{{ class }}"},
+     *     summary="{{ class }} show",
+     *     security={{"bearerAuth":{}}},
+     *     operationId="{{ class }}/show",
+     *     @OA\Parameter(
+     *          in="header",
+     *          name="X-localication",
+     *          required=false,
+     *          description="Ngôn ngữ",
+     *          @OA\Schema(
+     *            type="string",
+     *            example="vi",
+     *          )
+     *     ),
+     *     @OA\Parameter(
+     *          in="query",
+     *          name="page",
+     *          required=false,
+     *          description="Phân trang",
+     *          @OA\Schema(
+     *            type="integer",
+     *            example=1,
+     *          ),
+     *     ),
+     *     @OA\Parameter(
+     *          in="path",
+     *          name="id",
+     *          required=false,
+     *          description="ID {{ class }}",
+     *          @OA\Schema(
+     *            type="integer",
+     *            example="",
+     *          ),
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Success",
+     *             @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="Success."),
+     *          )
+     *     ),
+     * )
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * @author Nampx
+     * @OA\Post(
+     *     path="/api/{{ class }}/edit/{id}",
+     *     tags={"{{ class }}"},
+     *     summary="{{ class }} Edit",
+     *     security={{"bearerAuth":{}}},
+     *     operationId="{{ class }}/edit",
+     *     @OA\Parameter(
+     *          in="header",
+     *          name="X-localication",
+     *          required=false,
+     *          description="Ngôn ngữ",
+     *          @OA\Schema(
+     *            type="string",
+     *            example="vi",
+     *          )
+     *     ),
+     *     @OA\Parameter(
+     *          in="path",
+     *          name="id",
+     *          required=false,
+     *          description="Id {{ class }}",
+     *          @OA\Schema(
+     *            type="integer",
+     *            example="",
+     *          )
+     *     ),
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="multipart/form-data",
+     *             @OA\Schema(
+     *                 allOf={
+     *                     @OA\Schema(
+     *                     )
+     *                     }
+     *                     )
+     *                  )
+     *              ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Success",
+     *             @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="Success."),
+     *          )
+     *     ),
+     * )
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * @author Nampx
+     * @OA\Delete  (
+     *     path="/api/{{ class }}/delete/{id}",
+     *     tags={"{{ class }}"},
+     *     summary="{{ class }} delete",
+     *     security={{"bearerAuth":{}}},
+     *     operationId="{{ class }}/delete",
+     *     @OA\Parameter(
+     *          in="header",
+     *          name="X-localication",
+     *          required=false,
+     *          description="Ngôn ngữ",
+     *          @OA\Schema(
+     *            type="string",
+     *            example="vi",
+     *          )
+     *     ),
+     *     @OA\Parameter(
+     *          in="path",
+     *          name="id",
+     *          required=false,
+     *          description="ID {{ class }}",
+     *          @OA\Schema(
+     *            type="integer",
+     *            example="",
+     *          ),
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Success",
+     *             @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="Success."),
+     *          )
+     *     ),
+     * )
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}

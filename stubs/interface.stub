@@ -1,0 +1,10 @@
+<?php
+
+namespace {{namespace}};
+
+use App\Repositories\RepositoryInterface;
+
+interface {{name}}Interface extends RepositoryInterface
+{
+    // Build out service class
+}
